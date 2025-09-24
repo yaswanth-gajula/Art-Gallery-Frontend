@@ -3,12 +3,14 @@ name: Deploy Frontend to GitHub Pages
 on:
   push:
     branches:
-      - main
+      - master
+
+permissions:
+  contents: write
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -28,4 +30,4 @@ jobs:
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           branch: gh-pages
-          folder: dist # For Vite -> dist | CRA -> build
+          folder: dist  # Vite build output is `dist`
